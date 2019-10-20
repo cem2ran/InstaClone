@@ -1,0 +1,5 @@
+{
+    "editor.formatOnSave": true,
+    "reason_language_server.per_value_codelens": true,
+    "reason_language_server.opens_codelens": true
+}
