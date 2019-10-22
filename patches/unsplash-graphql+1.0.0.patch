@@ -1,0 +1,19 @@
+diff --git a/node_modules/unsplash-graphql/.env b/node_modules/unsplash-graphql/.env
+new file mode 100644
+index 0000000..5a6e026
+--- /dev/null
++++ b/node_modules/unsplash-graphql/.env
+@@ -0,0 +1,2 @@
++KEY=7a3cdd972d50b7207c4458023117fbe13a1f79e6ccdc015d2b59fe32fb4587cf
++SECRET=f9c13a92988299fb3fd10f0696f2bbe318a82583c5ef75e0b54d4304c0863663
+\ No newline at end of file
+diff --git a/node_modules/unsplash-graphql/tsconfig.json b/node_modules/unsplash-graphql/tsconfig.json
+index 2d16770..e68c648 100644
+--- a/node_modules/unsplash-graphql/tsconfig.json
++++ b/node_modules/unsplash-graphql/tsconfig.json
+@@ -1,5 +1,4 @@
+ {
+-  "extends": "@sindresorhus/tsconfig",
+   "compilerOptions": {
+     "outDir": "dist",
+     "target": "es2016",

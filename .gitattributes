@@ -1,2 +1,4 @@
 *.re linguist-language=OCaml
 *.rei linguist-language=OCaml
+*.gen.tsx linguist-generated
+*.bs.js linguist-generated

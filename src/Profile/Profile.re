@@ -2,24 +2,19 @@ open ReactNative;
 open ReactNavigation;
 
 include Stack.Make({
-  type params = unit;
+  type params = string;
 });
 
 module HomeScreen = {
   [@react.component]
-  let make = (~navigation) =>
+  let make = (~navigation: Core.navigation, ~route) =>
     <Background centered=true>
-      <Button
-        title="Open Post"
-        onPress={_ => navigation->Navigation.navigate("Post")}
+      <Posts
+        navigateToPost={id =>
+          navigation->Navigation.navigateWithParams("Post", id)
+        }
       />
     </Background>;
-};
-
-module Ionicons = {
-  [@bs.module "@expo/vector-icons"] [@react.component]
-  external make: (~name: string, ~size: int, ~color: string) => React.element =
-    "Ionicons";
 };
 
 [@react.component]
@@ -50,7 +45,7 @@ let make = () => {
                   )
                 )
                 onPress={_ => props##navigation->Navigation.goBack()}>
-                <Ionicons name="ios-arrow-back" size=24 color="grey" />
+                <IonIcons name="ios-arrow-back" size=24 color="grey" />
               </TouchableOpacity>,
           (),
         )
@@ -58,3 +53,6 @@ let make = () => {
     />
   </Navigator>;
 };
+
+[@genType]
+let default = make;

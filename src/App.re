@@ -16,9 +16,10 @@ let styles =
     })
   );
 
+[@genType]
 [@react.component]
 let app = () => {
   <Native.NavigationNativeContainer>
-    <Profile />
+    <Config.Apollo.Provider> <Profile /> </Config.Apollo.Provider>
   </Native.NavigationNativeContainer>;
 };

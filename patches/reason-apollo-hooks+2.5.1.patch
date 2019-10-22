@@ -1,0 +1,431 @@
+diff --git a/node_modules/reason-apollo-hooks/src/Mutation.re b/node_modules/reason-apollo-hooks/src/Mutation.re
+index aa6e228..1b0f19a 100644
+--- a/node_modules/reason-apollo-hooks/src/Mutation.re
++++ b/node_modules/reason-apollo-hooks/src/Mutation.re
+@@ -4,19 +4,31 @@ module type Config = {
+   let parse: Js.Json.t => t;
+ };
+ 
+-type graphqlErrors;
++type networkError = {. "statusCode": int};
++
++type apolloErrorExtensions = {. "code": Js.Nullable.t(string)};
++
++type graphqlError = {
++  .
++  "message": string,
++  "name": Js.Nullable.t(string),
++  "extensions": Js.Nullable.t(apolloErrorExtensions),
++  "locations": Js.Nullable.t(array(string)),
++  "path": Js.Nullable.t(array(string)),
++  "nodes": Js.Nullable.t(array(string)),
++};
+ 
+ type error = {
+   .
+   "message": string,
+-  "graphlErrors": graphqlErrors,
++  "graphQLErrors": Js.Nullable.t(array(graphqlError)),
++  "networkError": Js.Nullable.t(networkError),
+ };
+ 
+-/* Result that is return by the hook */
+-type result('a) =
+-  | Data('a)
+-  | Error(error)
+-  | NoData;
++type executionResponse('a) =
++  | Errors(array(graphqlError))
++  | EmptyResponse
++  | Data('a);
+ 
+ /* Result that is return by the hook */
+ type controlledResult('a) = {
+@@ -26,66 +38,165 @@ type controlledResult('a) = {
+   error: option(error),
+ };
+ 
+-type controledVariantResult('a) =
++type mutationResponse('a) =
++  | NotCalled
+   | Loading
+-  | Called
+-  | Data('a)
+   | Error(error)
+-  | NoData;
++  | EmptyResponse
++  | Data('a);
++
++type context;
++
++external context: Js.t({..}) => context = "%identity";
+ 
+ module Make = (Config: Config) => {
+   [@bs.module] external gql: ReasonApolloTypes.gql = "graphql-tag";
+ 
+-  type mutationResult = {. "data": option(Config.t)};
+-
+-  [@bs.deriving abstract]
+-  type options = {
+-    [@bs.optional]
+-    variables: Js.Json.t,
+-    [@bs.optional]
+-    client: ApolloClient.generatedApolloClient,
+-    [@bs.optional]
+-    refetchQueries:
+-      ReasonApolloTypes.executionResult => array(ApolloClient.queryObj),
+-    [@bs.optional]
+-    update: (ApolloClient.generatedApolloClient, mutationResult) => unit,
++  type mutationResult = {
++    .
++    "data": Js.nullable(Js.Json.t),
++    "error": Js.nullable(error),
++    "loading": bool,
++    "called": bool,
++    "client": Js.nullable(ApolloClient.generatedApolloClient),
+   };
+ 
+-  type jsResult = {
++  type options;
++
++  //https://github.com/apollographql/apollo-client/blob/7d3070cd4d2eb977463cc7f9829a6d2b8f1b5ac5/packages/apollo-client/src/core/watchQueryOptions.ts#L171-L277
++  [@bs.obj]
++  external options:
++    (
++      ~variables: Js.Json.t=?,
++      ~optimisticResponse: Js.Json.t=?,
++      ~refetchQueries: ReasonApolloTypes.executionResult =>
++                       array(ApolloClient.queryObj)
++                         =?,
++      ~awaitRefetchQueries: bool=?,
++      ~errorPolicy: [@bs.string] [ | `none | `ignore | `all]=?,
++      ~update: (ApolloClient.generatedApolloClient, mutationResult) => unit=?,
++      ~client: ApolloClient.generatedApolloClient=?,
++      ~context: context=?,
++      ~fetchPolicy: [@bs.string] [
++                      | [@bs.as "cache-and-network"] `cache_and_network
++                      | [@bs.as "cache-first"] `cache_first
++                      | [@bs.as "network-only"] `network_only
++                      | [@bs.as "cache-only"] `cache_only
++                      | [@bs.as "no-cache"] `no_cache
++                      | `standby
++                    ]
++                      =?,
++      unit
++    ) =>
++    options =
++    "";
++
++  type executionResultJS = {
+     .
+     "data": Js.Nullable.t(Js.Json.t),
+-    "loading": bool,
+-    "called": bool,
+-    "error": Js.Nullable.t(error),
++    "errors": Js.Nullable.t(array(graphqlError)),
+   };
+ 
+-  type jsMutate = (. options) => Js.Promise.t(jsResult);
++  type jsMutate = (. options) => Js.Promise.t(executionResultJS);
++
++  type mutate =
++    (
++      ~variables: Js.Json.t=?,
++      ~optimisticResponse: Js.Json.t=?,
++      ~refetchQueries: ReasonApolloTypes.executionResult =>
++                       array(ApolloClient.queryObj)
++                         =?,
++      ~awaitRefetchQueries: bool=?,
++      ~errorPolicy: [ | `all | `ignore | `none]=?,
++      ~update: (ApolloClient.generatedApolloClient, mutationResult) => unit=?,
++      ~client: ApolloClient.generatedApolloClient=?,
++      ~context: context=?,
++      ~fetchPolicy: [
++                      | `cache_and_network
++                      | `cache_first
++                      | `cache_only
++                      | `network_only
++                      | `no_cache
++                      | `standby
++                    ]
++                      =?,
++      unit
++    ) =>
++    Js.Promise.t(executionResponse(Config.t));
+ 
+   [@bs.module "@apollo/react-hooks"]
+   external useMutation:
+-    (. ReasonApolloTypes.queryString, options) => (jsMutate, jsResult) =
++    (. ReasonApolloTypes.queryString, options) => (jsMutate, mutationResult) =
+     "useMutation";
+ 
+-  let use = (~variables=?, ~client=?, ~refetchQueries=?, ~update=?, ()) => {
+-    let (jsMutate, jsResult) =
++  let use =
++      (
++        ~variables=?,
++        ~optimisticResponse=?,
++        ~refetchQueries=?,
++        ~awaitRefetchQueries=?,
++        ~errorPolicy=?,
++        ~update=?,
++        ~client=?,
++        ~context=?,
++        ~fetchPolicy=?,
++        (),
++      ) => {
++    let (jsMutate, jsResult: mutationResult) =
+       useMutation(.
+         gql(. Config.query),
+-        options(~variables?, ~client?, ~refetchQueries?, ~update?, ()),
++        options(
++          ~variables?,
++          ~optimisticResponse?,
++          ~refetchQueries?,
++          ~awaitRefetchQueries?,
++          ~errorPolicy?,
++          ~update?,
++          ~client?,
++          ~context?,
++          ~fetchPolicy?,
++          (),
++        ),
+       );
+ 
+-    let mutate =
++    let mutate: mutate =
+       React.useMemo1(
+-        ((), ~variables=?, ~client=?, ~refetchQueries=?, ()) =>
+-          jsMutate(. options(~variables?, ~client?, ~refetchQueries?, ()))
+-          |> Js.Promise.then_(jsResult =>
++        (
++          (),
++          ~variables=?,
++          ~optimisticResponse=?,
++          ~refetchQueries=?,
++          ~awaitRefetchQueries=?,
++          ~errorPolicy=?,
++          ~update=?,
++          ~client=?,
++          ~context=?,
++          ~fetchPolicy=?,
++          (),
++        ) =>
++          jsMutate(.
++            options(
++              ~variables?,
++              ~optimisticResponse?,
++              ~refetchQueries?,
++              ~awaitRefetchQueries?,
++              ~errorPolicy?,
++              ~update?,
++              ~client?,
++              ~context?,
++              ~fetchPolicy?,
++              (),
++            ),
++          )
++          |> Js.Promise.then_((executionResult: executionResultJS) =>
+                (
+                  switch (
+-                   Js.Nullable.toOption(jsResult##data),
+-                   Js.Nullable.toOption(jsResult##error),
++                   Js.Nullable.toOption(executionResult##data),
++                   Js.Nullable.toOption(executionResult##errors),
+                  ) {
++                 | (None, Some(errors)) => Errors(errors)
+                  | (Some(data), _) => Data(Config.parse(data))
+-                 | (None, Some(error)) => Error(error)
+-                 | (None, None) => NoData
++                 | (None, None) => EmptyResponse
+                  }
+                )
+                |> Js.Promise.resolve
+@@ -112,11 +223,11 @@ module Make = (Config: Config) => {
+       React.useMemo1(
+         () =>
+           switch (full) {
++          | {called: false} => NotCalled
+           | {loading: true} => Loading
+           | {error: Some(error)} => Error(error)
+           | {data: Some(data)} => Data(data)
+-          | {called: true} => Called
+-          | _ => NoData
++          | {error: None, data: None, called: true} => EmptyResponse
+           },
+         [|full|],
+       );
+diff --git a/node_modules/reason-apollo-hooks/src/Query.re b/node_modules/reason-apollo-hooks/src/Query.re
+index 3e1858b..a6bc8a9 100644
+--- a/node_modules/reason-apollo-hooks/src/Query.re
++++ b/node_modules/reason-apollo-hooks/src/Query.re
+@@ -36,6 +36,7 @@ type result('a) = {
+     (~variables: Js.Json.t=?, ~updateQuery: updateQueryT, unit) =>
+     Js.Promise.t(unit),
+   networkStatus: Types.networkStatus,
++  called: bool,
+ };
+ 
+ /**
+@@ -51,15 +52,40 @@ type fetchMoreOptions = {
+ module Make = (Config: Config) => {
+   [@bs.module] external gql: ReasonApolloTypes.gql = "graphql-tag";
+ 
+-  [@bs.deriving abstract]
+-  type options = {
+-    [@bs.optional]
+-    variables: Js.Json.t,
+-    [@bs.optional]
+-    client: ApolloClient.generatedApolloClient,
+-    [@bs.optional]
+-    notifyOnNetworkStatusChange: bool,
+-  };
++  type options;
++
++  //https://github.com/apollographql/apollo-client/blob/7d3070cd4d2eb977463cc7f9829a6d2b8f1b5ac5/packages/apollo-client/src/core/watchQueryOptions.ts#L38-L84
++  //https://github.com/apollographql/react-apollo/blob/3bc12b7f5b2064acc7ec0e15ec59cd2acfa61d49/packages/common/src/types/types.ts#L30-L51
++  [@bs.obj]
++  /* BaseQueryOptions */
++  external options:
++    (
++      ~ssr: bool=?,
++      ~variables: Js.Json.t=?,
++      ~fetchPolicy: [@bs.string] [
++                      | [@bs.as "cache-and-network"] `cache_and_network
++                      | [@bs.as "cache-first"] `cache_first
++                      | [@bs.as "network-only"] `network_only
++                      | [@bs.as "cache-only"] `cache_only
++                      | [@bs.as "no-cache"] `no_cache
++                      | `standby
++                    ]
++                      =?,
++      ~errorPolicy: [@bs.string] [ | `none | `ignore | `all]=?,
++      ~notifyOnNetworkStatusChange: bool=?,
++      ~client: ApolloClient.generatedApolloClient=?,
++      ~pollInterval: float=?,
++      ~partialRefetch: bool=?,
++      ~returnPartialRefetch: bool=?,
++      /* QueryFunctionOptions */
++      ~displayName: string=?,
++      ~skip: bool=?,
++      ~onCompleted: 'data => unit=?,
++      ~onError: error => unit=?,
++      unit
++    ) =>
++    options =
++    "";
+ 
+   [@bs.module "@apollo/react-hooks"]
+   external useQuery:
+@@ -72,15 +98,47 @@ module Make = (Config: Config) => {
+       [@bs.meth]
+       "refetch": Js.Nullable.t(Js.Json.t) => Js.Promise.t(Js.Json.t),
+       [@bs.meth] "fetchMore": fetchMoreOptions => Js.Promise.t(unit),
+-      "networkStatus": Js.Nullable.t(int),
++      "networkStatus": int,
++      "called": bool,
+     } =
+     "useQuery";
+ 
+-  let use = (~variables=?, ~client=?, ~notifyOnNetworkStatusChange=?, ()) => {
++  let use =
++      (
++        ~ssr=?,
++        ~variables=?,
++        ~fetchPolicy=?,
++        ~errorPolicy=?,
++        ~notifyOnNetworkStatusChange=?,
++        ~client=?,
++        ~pollInterval=?,
++        ~partialRefetch=?,
++        ~returnPartialRefetch=?,
++        ~displayName=?,
++        ~skip=?,
++        ~onCompleted=?,
++        ~onError=?,
++        (),
++      ) => {
+     let jsResult =
+       useQuery(
+         gql(. Config.query),
+-        options(~variables?, ~client?, ~notifyOnNetworkStatusChange?, ()),
++        options(
++          ~ssr?,
++          ~variables?,
++          ~fetchPolicy?,
++          ~errorPolicy?,
++          ~notifyOnNetworkStatusChange?,
++          ~client?,
++          ~pollInterval?,
++          ~partialRefetch?,
++          ~returnPartialRefetch?,
++          ~displayName?,
++          ~skip?,
++          ~onCompleted?,
++          ~onError?,
++          (),
++        ),
+       );
+ 
+     let result =
+@@ -108,6 +166,7 @@ module Make = (Config: Config) => {
+               jsResult##fetchMore(
+                 fetchMoreOptions(~variables?, ~updateQuery, ()),
+               ),
++            called: jsResult##called,
+           },
+         [|jsResult|],
+       );
+diff --git a/node_modules/reason-apollo-hooks/src/Types.re b/node_modules/reason-apollo-hooks/src/Types.re
+index 8f4cc46..1956ef0 100644
+--- a/node_modules/reason-apollo-hooks/src/Types.re
++++ b/node_modules/reason-apollo-hooks/src/Types.re
+@@ -8,18 +8,15 @@ type networkStatus =
+   | Refetch
+   | Poll
+   | Ready
+-  | Error
+-  | Unknown;
++  | Error;
+ 
+-let toNetworkStatus = (status: Js.Nullable.t(int)) => {
+-  switch (status->Js.Nullable.toOption) {
+-  | Some(1) => Loading
+-  | Some(2) => SetVariables
+-  | Some(3) => FetchMore
+-  | Some(4) => Refetch
+-  | Some(6) => Poll
+-  | Some(7) => Ready
+-  | Some(8) => Error
+-  | _ => Unknown
+-  };
+-};
++let toNetworkStatus =
++  fun
++  | 1 => Loading
++  | 2 => SetVariables
++  | 3 => FetchMore
++  | 4 => Refetch
++  | 6 => Poll
++  | 7 => Ready
++  | 8
++  | _ => Error;
+\ No newline at end of file
+diff --git a/node_modules/reason-apollo-hooks/src/Utils.re b/node_modules/reason-apollo-hooks/src/Utils.re
+index b742c2a..3dc15a9 100644
+--- a/node_modules/reason-apollo-hooks/src/Utils.re
++++ b/node_modules/reason-apollo-hooks/src/Utils.re
+@@ -1,7 +1,9 @@
+-let toQueryObj = (result): ApolloClient.queryObj => {
+-  "query": ApolloClient.gql(. result##query),
+-  "variables": result##variables,
+-};
++let toQueryObj = (result): ApolloClient.queryObj =>
++  ApolloClient.queryObj(
++    ~query=ApolloClient.gql(. result##query),
++    ~variables=result##variables,
++    (),
++  );
+ 
+ let toReadQueryOptions = result => {
+   "query": ApolloClient.gql(. result##query),

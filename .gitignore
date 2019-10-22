@@ -10,3 +10,9 @@ npm-debug.*
 lib
 .merlin
 .DS_STORE
+
+.idea
+.env
+.graphql_ppx_cache
+
+yarn-error.log

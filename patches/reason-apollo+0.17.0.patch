@@ -1,0 +1,92 @@
+diff --git a/node_modules/reason-apollo/src/ApolloClient.re b/node_modules/reason-apollo/src/ApolloClient.re
+index 7e41374..2721ebb 100644
+--- a/node_modules/reason-apollo/src/ApolloClient.re
++++ b/node_modules/reason-apollo/src/ApolloClient.re
+@@ -4,12 +4,27 @@ type queryObj = {
+   .
+   "query": ReasonApolloTypes.queryString,
+   "variables": Js.Json.t,
++  "fetchPolicy": string,
+ };
+ 
++let queryObj = (~query, ~variables, ~fetchPolicy="cache-first", ()): queryObj => {
++  "query": query,
++  "variables": variables,
++  "fetchPolicy": fetchPolicy,
++};
++
++[@bs.deriving abstract]
+ type mutationObj = {
+-  .
+-  "mutation": ReasonApolloTypes.queryString,
+-  "variables": Js.Json.t,
++  mutation: ReasonApolloTypes.queryString,
++  variables: Js.Json.t,
++  [@bs.optional]
++  fetchPolicy: string,
++  [@bs.optional]
++  errorPolicy: string,
++  [@bs.optional]
++  refetchQueries: array(string),
++  [@bs.optional]
++  awaitRefetchQueries: bool,
+ };
+ 
+ type generatedApolloClient = {
+@@ -58,7 +73,8 @@ external apolloClientObjectParam:
+     ~ssrMode: bool=?,
+     ~ssrForceFetchDelay: int=?,
+     ~connectToDevTools: bool=?,
+-    ~queryDeduplication: bool=?
++    ~queryDeduplication: bool=?,
++    ~defaultOptions: 'defaultOptions=?
+   ) =>
+   _ =
+   "";
+diff --git a/node_modules/reason-apollo/src/ReasonApollo.re b/node_modules/reason-apollo/src/ReasonApollo.re
+index 5b5b061..20c4eeb 100644
+--- a/node_modules/reason-apollo/src/ReasonApollo.re
++++ b/node_modules/reason-apollo/src/ReasonApollo.re
+@@ -11,6 +11,7 @@ let createApolloClient =
+       ~ssrForceFetchDelay=?,
+       ~connectToDevTools=?,
+       ~queryDeduplication=?,
++      ~defaultOptions=?,
+       (),
+     ) => {
+   createApolloClientJS(
+@@ -21,6 +22,7 @@ let createApolloClient =
+       ~ssrForceFetchDelay?,
+       ~connectToDevTools?,
+       ~queryDeduplication?,
++      ~defaultOptions?,
+     ),
+   );
+ };
+diff --git a/node_modules/reason-apollo/src/ReasonApolloTypes.re b/node_modules/reason-apollo/src/ReasonApolloTypes.re
+index 719dbb9..3a59e57 100644
+--- a/node_modules/reason-apollo/src/ReasonApolloTypes.re
++++ b/node_modules/reason-apollo/src/ReasonApolloTypes.re
+@@ -65,7 +65,7 @@ type apolloError = {
+   .
+   "message": string,
+   "graphQLErrors": Js.Nullable.t(array(graphqlError)),
+-  "networkError": Js.Nullable.t(string),
++  "networkError": Js.Nullable.t(networkError),
+ };
+ 
+ type apolloOptions = {
+diff --git a/node_modules/reason-apollo/src/graphql-types/ReasonApolloMutation.re b/node_modules/reason-apollo/src/graphql-types/ReasonApolloMutation.re
+index dca7636..cdeafe3 100644
+--- a/node_modules/reason-apollo/src/graphql-types/ReasonApolloMutation.re
++++ b/node_modules/reason-apollo/src/graphql-types/ReasonApolloMutation.re
+@@ -55,8 +55,8 @@ module Make = (Config: Config) => {
+       executionResult##data |> ReasonApolloUtils.getNonEmptyObj,
+       executionResult##errors |> Js.Nullable.toOption,
+     ) {
+-    | (Some(data), _) => Data(Config.parse(data))
+     | (_, Some(errors)) => Errors(errors)
++    | (Some(data), _) => Data(Config.parse(data))
+     | (None, None) => EmptyResponse
+     };
+ 
