@@ -1,5 +1,5 @@
 diff --git a/node_modules/reason-apollo-hooks/src/Mutation.re b/node_modules/reason-apollo-hooks/src/Mutation.re
-index aa6e228..1b0f19a 100644
+index aa6e228..f5e78cd 100644
 --- a/node_modules/reason-apollo-hooks/src/Mutation.re
 +++ b/node_modules/reason-apollo-hooks/src/Mutation.re
 @@ -4,19 +4,31 @@ module type Config = {

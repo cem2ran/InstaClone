@@ -905,6 +905,11 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@baransu/graphql_ppx_re@0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@baransu/graphql_ppx_re/-/graphql_ppx_re-0.7.1.tgz#8146a36a94d56e65692d74488e2bd6cbd4eb8dc9"
+  integrity sha512-S9RYUWk8IkFxjE1Xl5eohRgbHJP5nCWOD6J1hMV3hY+D43igDrILq1doAXJatYB82BxcsrBC9V+VeU2LtCxIDw==
+
 "@emotion/cache@^0.8.8":
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-0.8.8.tgz#2c3bd1aa5fdb88f1cc2325176a3f3201739e726c"
@@ -4294,10 +4299,10 @@ bs-fetch@^0.5.0:
   resolved "https://registry.yarnpkg.com/bs-fetch/-/bs-fetch-0.5.0.tgz#6913b1d1ddfa0b0a4b832357854e9763d61d4b28"
   integrity sha512-cGjwRpyNcIaX+p2ssy/38zs7BM/miKNgmOR3NEhxKFete5mR05JcvjuV4raG89oGCG281SU1b56TTAKmf9VCug==
 
-bs-platform@5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-5.2.0.tgz#0ec317273daed573491c105f68ea48826a285b7a"
-  integrity sha512-miyePsOF9VbuhT5QD5E/hb+l454Fo4MAcg5xV1GJhbWxmejuF/X7mCYUsNrK1UUAaYt8hnoyFdeLG22sxVta9A==
+bs-platform@7.2.2:
+  version "7.2.2"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-7.2.2.tgz#76fdc63e4889458ae3d257a0132107a792f2309c"
+  integrity sha512-PWcFfN+jCTtT/rMaHDhKh+W9RUTpaRunmSF9vbLYcrJbpgCNW6aFKAY33u0P3mLxwuhshN3b4FxqGUBPj6exZQ==
 
 bser@^2.0.0:
   version "2.1.0"
@@ -7133,10 +7138,10 @@ genfun@^5.0.0:
   resolved "https://registry.yarnpkg.com/genfun/-/genfun-5.0.0.tgz#9dd9710a06900a5c4a5bf57aca5da4e52fe76537"
   integrity sha512-KGDOARWVga7+rnB3z9Sd2Letx515owfk0hSxHGuqjANb1M+x2bGZGqHLiozPsYMdM2OubeMni/Hpwmjq6qIUhA==
 
-gentype@^2.41.0:
-  version "2.41.0"
-  resolved "https://registry.yarnpkg.com/gentype/-/gentype-2.41.0.tgz#91134f99cd7733ba30d5b4a2126090d0fc6c267a"
-  integrity sha512-A2VSceEIas+Sk5Pv5EV3LoomdA4NsZ3ZLBfeOYiSG/IZeIZqjgv5zfDzxU/ZNqud8GULdQl7eTIJXObj3O5lrQ==
+gentype@^3.21.0:
+  version "3.21.0"
+  resolved "https://registry.yarnpkg.com/gentype/-/gentype-3.21.0.tgz#01ce0ee769326bb4a1249ab0b61ef6f5eaa2324a"
+  integrity sha512-RqDvC9LkoWjdus3Z8x1UVpJD0+INSHVmYFXanzBhbNhya75wI+zVwxdORIrqK8Tuiyhj0eetPWVgqhU9wo17+w==
 
 get-caller-file@^1.0.1:
   version "1.0.3"
@@ -7505,14 +7510,6 @@ graphql@^14.0.2, graphql@^14.5.3:
   integrity sha512-MMwmi0zlVLQKLdGiMfWkgQD7dY/TUKt4L+zgJ/aR0Howebod3aNgP5JkgvAULiR2HPVZaP2VEElqtdidHweLkg==
   dependencies:
     iterall "^1.2.2"
-
-graphql_ppx@^0.2.8:
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/graphql_ppx/-/graphql_ppx-0.2.8.tgz#2f057a69b3131b95cf4cd9ce1e53eb722e6d8baa"
-  integrity sha512-3MyMo5Kt1sKKc6JRQgrgz0FF23roFPiffaIVKMfJ/n3qxZ38L2qUrF2oUkyrgPfRAtDJUxAcshR6+q9LJAiZKA==
-  dependencies:
-    request "^2.82.0"
-    yargs "^11.0.0"
 
 growly@^1.3.0:
   version "1.3.0"
@@ -10632,7 +10629,7 @@ os-locale@^2.0.0:
     lcid "^1.0.0"
     mem "^1.1.0"
 
-os-locale@^3.0.0, os-locale@^3.1.0:
+os-locale@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/os-locale/-/os-locale-3.1.0.tgz#a802a6ee17f24c10483ab9935719cef4ed16bf1a"
   integrity sha512-Z8l3R4wYWM40/52Z+S265okfFj8Kt2cC2MKY+xNi3kFs+XGI7WXu/I309QQQYbRW4ijiZ+yxs9pqEhJh0DqW3Q==
@@ -12410,10 +12407,9 @@ reason-expo@^34.0.0:
   resolved "https://registry.yarnpkg.com/reason-expo/-/reason-expo-34.3.2.tgz#c3ed04c5e07c53c79af98e108b4ba1aa439de11d"
   integrity sha512-BhMocmNZVYWYd11c8Nzr8eMFUDyH6fR8G60VaStreDF+1zsRyYbslIJF1+1gCySIbnVV6eBtIa7VATQUhBgCBQ==
 
-reason-react-native@^0.60.0:
-  version "0.60.0"
-  resolved "https://registry.yarnpkg.com/reason-react-native/-/reason-react-native-0.60.0.tgz#7adb9837f28d79d9f1e009b5d01ae864aff15d51"
-  integrity sha512-7vq7KIaY1kGb5xnWVewuy8ttBx7/HAgeKfiwDYV3rij6Z89vU6QIheR6rENV8UxaKwRN/Gw168ladWLM042k9A==
+reason-react-native@reason-react-native/reason-react-native#0127d40f58600cd3aa21fbd06b52deeab03d76ce:
+  version "0.61.1"
+  resolved "https://codeload.github.com/reason-react-native/reason-react-native/tar.gz/0127d40f58600cd3aa21fbd06b52deeab03d76ce"
 
 reason-react@^0.7.0:
   version "0.7.0"
@@ -12666,7 +12662,7 @@ request-promise-native@1.0.5:
     stealthy-require "^1.1.0"
     tough-cookie ">=2.3.3"
 
-request@2.88.0, request@^2.81.0, request@^2.82.0, request@^2.83.0, request@^2.88.0:
+request@2.88.0, request@^2.81.0, request@^2.83.0, request@^2.88.0:
   version "2.88.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
   integrity sha512-NAqBSrijGLZdM0WZNsInLJpkJokL72XYjUpnB0iwsRgxh7dB6COrHnTBNwN0E+lHDAJzu7kLAkDeY08z2/A0hg==
@@ -15294,13 +15290,6 @@ yargs-parser@^7.0.0:
   dependencies:
     camelcase "^4.1.0"
 
-yargs-parser@^9.0.2:
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-9.0.2.tgz#9ccf6a43460fe4ed40a9bb68f48d43b8a68cc077"
-  integrity sha1-nM9qQ0YP5O1Aqbto9I1DuKaMwHc=
-  dependencies:
-    camelcase "^4.1.0"
-
 yargs@12.0.2:
   version "12.0.2"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-12.0.2.tgz#fe58234369392af33ecbef53819171eff0f5aadc"
@@ -15336,24 +15325,6 @@ yargs@12.0.x:
     which-module "^2.0.0"
     y18n "^3.2.1 || ^4.0.0"
     yargs-parser "^11.1.1"
-
-yargs@^11.0.0:
-  version "11.1.1"
-  resolved "https://registry.yarnpkg.com/yargs/-/yargs-11.1.1.tgz#5052efe3446a4df5ed669c995886cc0f13702766"
-  integrity sha512-PRU7gJrJaXv3q3yQZ/+/X6KBswZiaQ+zOmdprZcouPYtQgvNU35i+68M4b1ZHLZtYFT5QObFLV+ZkmJYcwKdiw==
-  dependencies:
-    cliui "^4.0.0"
-    decamelize "^1.1.1"
-    find-up "^2.1.0"
-    get-caller-file "^1.0.1"
-    os-locale "^3.1.0"
-    require-directory "^2.1.1"
-    require-main-filename "^1.0.1"
-    set-blocking "^2.0.0"
-    string-width "^2.0.0"
-    which-module "^2.0.0"
-    y18n "^3.2.1"
-    yargs-parser "^9.0.2"
 
 yargs@^14.0.0:
   version "14.2.0"

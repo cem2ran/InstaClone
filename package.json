@@ -25,6 +25,7 @@
     }
   },
   "dependencies": {
+    "@baransu/graphql_ppx_re": "0.7.1",
     "@react-native-community/masked-view": "^0.1.1",
     "@react-navigation/core": "^5.0.0-alpha.16",
     "@react-navigation/native": "^5.0.0-alpha.12",
@@ -32,13 +33,12 @@
     "@reason-react-native/navigation": "cem2ran/reason-react-navigation#259ba467c0bf1acac0bd4036755175e398ffda12",
     "apollo-boost": "^0.4.4",
     "bs-fetch": "^0.5.0",
-    "bs-platform": "5.2.0",
+    "bs-platform": "7.2.2",
     "expo": "^35.0.0",
     "expo-linear-gradient": "~7.0.0",
     "graphql": "^14.5.3",
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.5",
-    "graphql_ppx": "^0.2.8",
     "react": "16.8.3",
     "react-apollo": "^3.1.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
@@ -51,7 +51,7 @@
     "reason-apollo-hooks": "2.5.1",
     "reason-expo": "^34.0.0",
     "reason-react": "^0.7.0",
-    "reason-react-native": "^0.60.0"
+    "reason-react-native": "reason-react-native/reason-react-native#0127d40f58600cd3aa21fbd06b52deeab03d76ce"
   },
   "devDependencies": {
     "@storybook/react-native": "4.2.0-alpha.7",
@@ -60,7 +60,7 @@
     "babel-preset-expo": "^7.0.0",
     "expo-cli": "^3.4.1",
     "faker": "^4.1.0",
-    "gentype": "^2.41.0",
+    "gentype": "^3.21.0",
     "now": "^16.3.1",
     "npm-run-all": "^4.1.5",
     "patch-package": "^6.2.0",

@@ -77,7 +77,7 @@ index 719dbb9..3a59e57 100644
  
  type apolloOptions = {
 diff --git a/node_modules/reason-apollo/src/graphql-types/ReasonApolloMutation.re b/node_modules/reason-apollo/src/graphql-types/ReasonApolloMutation.re
-index dca7636..cdeafe3 100644
+index dca7636..838870f 100644
 --- a/node_modules/reason-apollo/src/graphql-types/ReasonApolloMutation.re
 +++ b/node_modules/reason-apollo/src/graphql-types/ReasonApolloMutation.re
 @@ -55,8 +55,8 @@ module Make = (Config: Config) => {
@@ -90,3 +90,50 @@ index dca7636..cdeafe3 100644
      | (None, None) => EmptyResponse
      };
  
+@@ -135,7 +135,7 @@ module Make = (Config: Config) => {
+         ~onCompleted: option(unit => unit)=?,
+         ~children: (apolloMutation, renderPropObj) => React.element,
+       ) =>
+-    <JsMutation mutation=graphqlMutationAST variables onError onCompleted>
++    <JsMutation mutation=graphqlMutationAST ?variables ?onError ?onCompleted>
+       {(mutation, apolloData) =>
+          children(
+            apolloMutationFactory(~jsMutation=mutation),
+diff --git a/node_modules/reason-apollo/src/graphql-types/ReasonApolloQuery.re b/node_modules/reason-apollo/src/graphql-types/ReasonApolloQuery.re
+index ce99f0e..fd1b482 100644
+--- a/node_modules/reason-apollo/src/graphql-types/ReasonApolloQuery.re
++++ b/node_modules/reason-apollo/src/graphql-types/ReasonApolloQuery.re
+@@ -182,19 +182,19 @@ module Make = (Config: ReasonApolloTypes.Config) => {
+       ) =>
+     <JsQuery
+       query=graphqlQueryAST
+-      variables
+-      pollInterval
+-      notifyOnNetworkStatusChange
+-      fetchPolicy
+-      errorPolicy
+-      ssr
+-      displayName
+-      skip
+-      onCompleted
+-      onError
+-      partialRefetch
+-      delay
+-      context>
++      ?variables
++      ?pollInterval
++      ?notifyOnNetworkStatusChange
++      ?fetchPolicy
++      ?errorPolicy
++      ?ssr
++      ?displayName
++      ?skip
++      ?onCompleted
++      ?onError
++      ?partialRefetch
++      ?delay
++      ?context>
+       {apolloData => apolloData |> convertJsInputToReason |> children}
+     </JsQuery>;
+ };
+\ No newline at end of file

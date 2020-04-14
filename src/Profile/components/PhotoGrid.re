@@ -4,15 +4,15 @@ let keyExtractor = (item, _index) => item##id;
 
 let window = Dimensions.get(`window);
 
-let width = window##width /. 3.;
+let width = window.width /. 3.;
 
-let renderItem = (onPress, data) =>
-  <TouchableWithoutFeedback onPress={_ => onPress(data##item##id)}>
+let renderItem = (onPress, data: VirtualizedList.renderItemProps('item)) =>
+  <TouchableWithoutFeedback onPress={_ => onPress(data.item##id)}>
     <Image
-      key={data##item##id}
+      key={data.item##id}
       source=Image.(
         Source.fromUriSource(
-          uriSource(~uri=data##item##urls##small, ~width, ~height=width, ()),
+          uriSource(~uri=data.item##urls##small, ~width, ~height=width, ()),
         )
       )
     />

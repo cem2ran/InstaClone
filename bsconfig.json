@@ -3,20 +3,16 @@
   "reason": {
     "react-jsx": 3
   },
-  "bsc-flags": [
-    "-bs-super-errors"
-  ],
+  "bsc-flags": ["-bs-super-errors"],
   "bs-dependencies": [
     "reason-apollo",
     "reason-apollo-hooks",
     "reason-react",
     "reason-react-native",
     "reason-expo",
-    "@reason-react-native/navigation",
+    "@reason-react-native/navigation"
   ],
-  "ppx-flags": [
-    "graphql_ppx/ppx"
-  ],
+  "ppx-flags": ["@baransu/graphql_ppx_re/ppx"],
   "sources": [
     {
       "dir": "src",

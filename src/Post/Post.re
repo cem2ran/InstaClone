@@ -4,7 +4,7 @@ open PostData;
 
 let window = Dimensions.get(`window);
 
-let width = window##width;
+let width = window.width;
 
 [@react.component]
 let make = (~navigation, ~route: Navigation.route) => {
