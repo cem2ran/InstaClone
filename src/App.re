@@ -16,10 +16,12 @@ let styles =
     })
   );
 
-[@genType]
 [@react.component]
 let app = () => {
-  <Native.NavigationNativeContainer>
+  <Native.NavigationContainer>
     <Config.Apollo.Provider> <Profile /> </Config.Apollo.Provider>
-  </Native.NavigationNativeContainer>;
+  </Native.NavigationContainer>;
 };
+
+[@genType]
+let default = app;

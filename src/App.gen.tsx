@@ -8,6 +8,8 @@ import * as React from 'react';
 const AppBS = require('./App.bs');
 
 // tslint:disable-next-line:interface-over-type-literal
-export type app_Props = {};
+export type Props = {};
 
-export const app: React.ComponentType<{}> = AppBS.app;
+export const $$default: React.ComponentType<{}> = AppBS.default;
+
+export default $$default;

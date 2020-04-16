@@ -1,6 +1,11 @@
-//If we're running Expo in Development mode we use Storybook entry, otherwise App.
-const App = __DEV__
-    ? require('./storybook').default
-    : require('./src/App.bs').default
+import { Platform } from "react-native";
 
-export default App
+const isWeb = Platform.OS === "web";
+
+//If we're running Expo in Development mode we use Storybook entry, otherwise App.
+const App =
+  !isWeb && __DEV__
+    ? require("./.storybook/config").default
+    : require("./src/App.bs").default;
+
+export default App;

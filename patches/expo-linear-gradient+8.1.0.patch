@@ -1,0 +1,44 @@
+diff --git a/node_modules/expo-linear-gradient/build/LinearGradient.js b/node_modules/expo-linear-gradient/build/LinearGradient.js
+index 6b1a7da..fa17201 100644
+--- a/node_modules/expo-linear-gradient/build/LinearGradient.js
++++ b/node_modules/expo-linear-gradient/build/LinearGradient.js
+@@ -1,6 +1,6 @@
+ import PropTypes from 'prop-types';
+ import React from 'react';
+-import { ColorPropType, Platform, ViewPropTypes, processColor } from 'react-native';
++import { Platform, processColor } from 'react-native';
+ import NativeLinearGradient from './NativeLinearGradient';
+ export default class LinearGradient extends React.Component {
+     render() {
+@@ -16,8 +16,7 @@ export default class LinearGradient extends React.Component {
+     }
+ }
+ LinearGradient.propTypes = {
+-    ...ViewPropTypes,
+-    colors: PropTypes.arrayOf(ColorPropType).isRequired,
++    colors: PropTypes.arrayOf({}).isRequired,
+     locations: PropTypes.arrayOf(PropTypes.number),
+     start: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.object]),
+     end: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.object]),
+diff --git a/node_modules/expo-linear-gradient/src/LinearGradient.tsx b/node_modules/expo-linear-gradient/src/LinearGradient.tsx
+index 033e12e..980df8a 100644
+--- a/node_modules/expo-linear-gradient/src/LinearGradient.tsx
++++ b/node_modules/expo-linear-gradient/src/LinearGradient.tsx
+@@ -1,6 +1,6 @@
+ import PropTypes from 'prop-types';
+ import React from 'react';
+-import { ColorPropType, Platform, View, ViewPropTypes, processColor } from 'react-native';
++import { Platform, View, processColor } from 'react-native';
+ 
+ import NativeLinearGradient from './NativeLinearGradient';
+ 
+@@ -15,8 +15,7 @@ export type LinearGradienPoint = { x: number; y: number } | [number, number];
+ 
+ export default class LinearGradient extends React.Component<LinearGradientProps> {
+   static propTypes = {
+-    ...ViewPropTypes,
+-    colors: PropTypes.arrayOf(ColorPropType).isRequired,
++    colors: PropTypes.arrayOf({}).isRequired,
+     locations: PropTypes.arrayOf(PropTypes.number),
+     start: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.object]),
+     end: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.object]),

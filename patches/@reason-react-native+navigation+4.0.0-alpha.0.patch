@@ -1,0 +1,130 @@
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/AppContainer.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/AppContainer.reast
+new file mode 100644
+index 0000000..de2828b
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/AppContainer.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/BottomTabs.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/BottomTabs.reast
+new file mode 100644
+index 0000000..37b6ed4
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/BottomTabs.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/Core-ReactNavigation.cmi b/node_modules/@reason-react-native/navigation/lib/bs/src/Core-ReactNavigation.cmi
+new file mode 100644
+index 0000000..24350a1
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/Core-ReactNavigation.cmi differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/Core-ReactNavigation.cmj b/node_modules/@reason-react-native/navigation/lib/bs/src/Core-ReactNavigation.cmj
+new file mode 100644
+index 0000000..7a16f73
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/Core-ReactNavigation.cmj differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/Core-ReactNavigation.cmt b/node_modules/@reason-react-native/navigation/lib/bs/src/Core-ReactNavigation.cmt
+new file mode 100644
+index 0000000..8000bcc
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/Core-ReactNavigation.cmt differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/Core.d b/node_modules/@reason-react-native/navigation/lib/bs/src/Core.d
+new file mode 100644
+index 0000000..d3b7135
+--- /dev/null
++++ b/node_modules/@reason-react-native/navigation/lib/bs/src/Core.d
+@@ -0,0 +1 @@
++src/Core-ReactNavigation.cmj : ReactNavigation.cmi src/NavigationActions-ReactNavigation.cmj src/NavigationActions-ReactNavigation.cmi
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/Core.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/Core.reast
+new file mode 100644
+index 0000000..cbf4f00
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/Core.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/Drawer.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/Drawer.reast
+new file mode 100644
+index 0000000..caca739
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/Drawer.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/DrawerNavigator.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/DrawerNavigator.reast
+new file mode 100644
+index 0000000..c8b8171
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/DrawerNavigator.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/Example.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/Example.reast
+new file mode 100644
+index 0000000..fe1de5f
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/Example.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/MaterialBottomTabs.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/MaterialBottomTabs.reast
+new file mode 100644
+index 0000000..397d112
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/MaterialBottomTabs.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/MaterialTopTabs.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/MaterialTopTabs.reast
+new file mode 100644
+index 0000000..a7ad10e
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/MaterialTopTabs.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/Native.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/Native.reast
+new file mode 100644
+index 0000000..90b3d6e
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/Native.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/Navigation.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/Navigation.reast
+new file mode 100644
+index 0000000..f00508d
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/Navigation.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/NavigationActions.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/NavigationActions.reast
+new file mode 100644
+index 0000000..146ff80
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/NavigationActions.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/NavigationContainer.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/NavigationContainer.reast
+new file mode 100644
+index 0000000..5ea6d40
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/NavigationContainer.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/NavigationOptions.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/NavigationOptions.reast
+new file mode 100644
+index 0000000..fb1fdf6
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/NavigationOptions.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/NavigationState.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/NavigationState.reast
+new file mode 100644
+index 0000000..0eed91f
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/NavigationState.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/Navigator.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/Navigator.reast
+new file mode 100644
+index 0000000..bd16318
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/Navigator.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/Stack.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/Stack.reast
+new file mode 100644
+index 0000000..07b2e05
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/Stack.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/StackNavigator.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/StackNavigator.reast
+new file mode 100644
+index 0000000..3bf429d
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/StackNavigator.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/SwitchNavigator.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/SwitchNavigator.reast
+new file mode 100644
+index 0000000..609c1fd
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/SwitchNavigator.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/lib/bs/src/TabNavigator.reast b/node_modules/@reason-react-native/navigation/lib/bs/src/TabNavigator.reast
+new file mode 100644
+index 0000000..0951c7e
+Binary files /dev/null and b/node_modules/@reason-react-native/navigation/lib/bs/src/TabNavigator.reast differ
+diff --git a/node_modules/@reason-react-native/navigation/src/Example.re b/node_modules/@reason-react-native/navigation/src/Example.re
+index c2d88a1..35d849b 100644
+--- a/node_modules/@reason-react-native/navigation/src/Example.re
++++ b/node_modules/@reason-react-native/navigation/src/Example.re
+@@ -51,10 +51,10 @@ module RootStackScreen = {
+     type params = unit;
+   });
+   let make = () =>
+-    <Native.NavigationNativeContainer>
++    <Native.NavigationContainer>
+       <Navigator mode=`modal headerMode=`none>
+         <Screen name="Main" component=MainStackScreen.make />
+         <Screen name="MyModal" component=ModalScreen.make />
+       </Navigator>
+-    </Native.NavigationNativeContainer>;
++    </Native.NavigationContainer>;
+ };
+\ No newline at end of file
+diff --git a/node_modules/@reason-react-native/navigation/src/Native.re b/node_modules/@reason-react-native/navigation/src/Native.re
+index 223702d..e4e7c60 100644
+--- a/node_modules/@reason-react-native/navigation/src/Native.re
++++ b/node_modules/@reason-react-native/navigation/src/Native.re
+@@ -1,4 +1,4 @@
+-module NavigationNativeContainer = {
++module NavigationContainer = {
+   //TODO
+   type initialState;
+   type navigationState;
+@@ -11,5 +11,5 @@ module NavigationNativeContainer = {
+       ~children: React.element
+     ) =>
+     React.element =
+-    "NavigationNativeContainer";
++    "NavigationContainer";
+ };
