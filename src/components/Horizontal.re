@@ -1,6 +1,5 @@
 open ReactNative;
 
-open Style;
 include View;
 
 let makeProps =

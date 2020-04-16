@@ -1,9 +1,8 @@
 open ReactNative;
-
-let style = Style.(style(~alignItems=`center, ()));
-let valueStyle = Style.textStyle(~fontSize=17., ~fontWeight=`_700, ());
-let labelStyle =
-  Style.textStyle(~fontSize=13., ~fontWeight=`_500, ~color="#777", ());
+open Styles;
+let style = ViewStyle({alignItems: `center});
+let valueStyle = TextStyle({fontSize: 17., fontWeight: `_700});
+let labelStyle = TextStyle({fontSize: 13., fontWeight: `_500, color: "#777"});
 
 [@react.component]
 let make = (~value, ~label) => {

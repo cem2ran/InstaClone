@@ -1,5 +1,6 @@
 open ReactNative;
 open PostData;
+open Styles;
 
 let description = {j|🏠 Chicago
 🚀 @draftbit co-founder
@@ -21,14 +22,13 @@ let make = (~id) => {
   | {data: Some(data)} =>
     let user = data##getPhotoById##user;
     <View
-      style=Style.(
-        style(
-          ~justifyContent=`spaceBetween,
-          ~paddingHorizontal=12.->dp,
-          ~paddingVertical=12.->dp,
-          (),
-        )
-      )>
+      style={
+        ViewStyle({
+          justifyContent: `spaceBetween,
+          paddingHorizontal: 12.->dp,
+          paddingVertical: 12.->dp,
+        })
+      }>
       <Horizontal>
         <TouchableWithoutFeedback
           onPress={_ => Js.log("Click Profile Image")}>

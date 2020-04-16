@@ -1,5 +1,6 @@
 open ReactNative;
 open ReactNavigation;
+open Styles;
 
 include Stack.Make({
   type params = string;
@@ -24,7 +25,7 @@ let make = () => {
       name="Profile"
       component=HomeScreen.make
       options={_props =>
-        options(~headerStyle=Style.style(~backgroundColor="#fafafa", ()), ())
+        options(~headerStyle=ViewStyle({backgroundColor: "#fafafa"}), ())
       }
     />
     <Screen
@@ -35,15 +36,14 @@ let make = () => {
           ~headerLeft=
             _ =>
               <TouchableOpacity
-                style=Style.(
-                  style(
-                    ~width=32.->dp,
-                    ~height=32.->dp,
-                    ~alignItems=`center,
-                    ~justifyContent=`center,
-                    (),
-                  )
-                )
+                style={
+                  ViewStyle({
+                    width: 32.->dp,
+                    height: 32.->dp,
+                    alignItems: `center,
+                    justifyContent: `center,
+                  })
+                }
                 onPress={_ => props##navigation->Navigation.goBack()}>
                 <IonIcons name="ios-arrow-back" size=24 color="grey" />
               </TouchableOpacity>,

@@ -12,7 +12,7 @@
     "reason-expo",
     "@reason-react-native/navigation"
   ],
-  "ppx-flags": ["@baransu/graphql_ppx_re/ppx"],
+  "ppx-flags": ["@baransu/graphql_ppx_re/ppx", "@cem2ran/ppx_style/ppx"],
   "sources": [
     {
       "dir": "src",

@@ -1,9 +1,10 @@
 open ReactNative;
 open Typography;
+open Styles;
 
 [@react.component]
 let make = (~username, ~description) =>
-  <View style=Style.(style(~paddingHorizontal=12.->dp, ()))>
+  <View style={ViewStyle({paddingHorizontal: 12.->dp})}>
     <T4>
       <T4_Bold value={j|$username |j} />
       Option.(description or "")->React.string
