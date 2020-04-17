@@ -26,6 +26,7 @@ let make = (~data, ~loading as refreshing, ~onPress) => {
     keyExtractor
     renderItem={renderItem(onPress)}
     data
+    scrollEnabled=false
     numColumns=3
   />;
 };
