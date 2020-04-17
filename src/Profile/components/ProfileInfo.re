@@ -24,7 +24,7 @@ let make = (~id) => {
     <View
       style={
         ViewStyle({
-          justifyContent: `spaceBetween,
+          justifyContent: spaceBetween,
           paddingHorizontal: 12.->dp,
           paddingVertical: 12.->dp,
         })

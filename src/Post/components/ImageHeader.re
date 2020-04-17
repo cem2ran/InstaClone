@@ -8,7 +8,7 @@ let make = (~image as uri, ~location, ~username) => {
   <Horizontal
     style={
       ViewStyle({
-        justifyContent: `spaceBetween,
+        justifyContent: spaceBetween,
         paddingHorizontal: 7.->dp,
         paddingVertical: 10.->dp,
       })
@@ -20,7 +20,7 @@ let make = (~image as uri, ~location, ~username) => {
           source=Image.(Source.fromUriSource(uriSource(~uri, ())))
         />
       </TouchableWithoutFeedback>
-      <View style={ViewStyle({paddingLeft: 7.->dp, justifyContent: `center})}>
+      <View style={ViewStyle({paddingLeft: 7.->dp, justifyContent: center})}>
         <T2 value=username />
         <T3
           value={

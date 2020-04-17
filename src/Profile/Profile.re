@@ -40,8 +40,8 @@ let make = () => {
                   ViewStyle({
                     width: 32.->dp,
                     height: 32.->dp,
-                    alignItems: `center,
-                    justifyContent: `center,
+                    alignItems: center,
+                    justifyContent: center,
                   })
                 }
                 onPress={_ => props##navigation->Navigation.goBack()}>

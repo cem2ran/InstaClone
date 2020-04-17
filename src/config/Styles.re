@@ -1,4 +1,9 @@
 include ReactNative.Style;
+
+let center = `center;
+let flexStart = `flexStart;
+let spaceBetween = `spaceBetween;
+let spaceEvenly = `spaceEvenly;
 module ViewStyle = {
   let make = ReactNative.Style.viewStyle;
 };

@@ -1,4 +1,3 @@
-open ReactNative;
 open Styles;
 
 [@react.component]
@@ -6,13 +5,13 @@ let make = (~liked=true) => {
   <Horizontal
     style={
       ViewStyle({
-        justifyContent: `spaceBetween,
+        justifyContent: spaceBetween,
         paddingHorizontal: 12.->dp,
         paddingVertical: 10.->dp,
       })
     }>
     <Horizontal
-      style={ViewStyle({width: 90.->dp, justifyContent: `spaceBetween})}>
+      style={ViewStyle({width: 90.->dp, justifyContent: spaceBetween})}>
       <Icons.Ionicons
         name={liked ? "md-heart" : "md-heart-empty"}
         size=26
