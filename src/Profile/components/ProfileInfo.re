@@ -25,8 +25,8 @@ let make = (~id) => {
       style={
         ViewStyle({
           justifyContent: spaceBetween,
-          paddingHorizontal: 12.->dp,
-          paddingVertical: 12.->dp,
+          paddingHorizontal: 12.,
+          paddingVertical: 12.,
         })
       }>
       <Horizontal>

@@ -31,8 +31,8 @@ let make = (~likes, ~likedByUsers=[|"a", "b", "c"|]) => {
   };
 
   <Horizontal
-    style={ViewStyle({paddingHorizontal: 12.->dp, paddingVertical: 5.->dp})}>
-    <Horizontal style={ViewStyle({width: 50.->dp})}>
+    style={ViewStyle({paddingHorizontal: 12., paddingVertical: 5.})}>
+    <Horizontal style={ViewStyle({width: 50.})}>
       images->React.array
     </Horizontal>
     <T4>

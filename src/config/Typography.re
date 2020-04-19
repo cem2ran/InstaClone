@@ -3,6 +3,8 @@ open ReactNative;
 module Edit = {
   include Text;
 
+  let make = Text.make;
+
   let makeProps =
     Styled.text(style =>
       style(~fontSize=13., ~fontWeight=`_700, ~color="#333", ())

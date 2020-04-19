@@ -6,12 +6,11 @@ let make = (~liked=true) => {
     style={
       ViewStyle({
         justifyContent: spaceBetween,
-        paddingHorizontal: 12.->dp,
-        paddingVertical: 10.->dp,
+        paddingHorizontal: 12.,
+        paddingVertical: 10.,
       })
     }>
-    <Horizontal
-      style={ViewStyle({width: 90.->dp, justifyContent: spaceBetween})}>
+    <Horizontal style={ViewStyle({width: 90., justifyContent: spaceBetween})}>
       <Icons.Ionicons
         name={liked ? "md-heart" : "md-heart-empty"}
         size=26

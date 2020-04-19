@@ -38,8 +38,8 @@ let make = () => {
               <TouchableOpacity
                 style={
                   ViewStyle({
-                    width: 32.->dp,
-                    height: 32.->dp,
+                    width: 32.,
+                    height: 32.,
                     alignItems: center,
                     justifyContent: center,
                   })

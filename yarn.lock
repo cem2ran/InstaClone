@@ -1160,10 +1160,10 @@
   resolved "https://registry.yarnpkg.com/@base2/pretty-print-object/-/pretty-print-object-1.0.0.tgz#860ce718b0b73f4009e153541faff2cb6b85d047"
   integrity sha512-4Th98KlMHr5+JkxfcoDT//6vY8vM+iSPrLNpHhRyLx2CFYi8e2RfqPLdpbnpo0Q5lQC5hNB79yes07zb02fvCw==
 
-"@cem2ran/ppx_style@0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@cem2ran/ppx_style/-/ppx_style-0.0.3.tgz#db582e0b959618eefdde2601ca8c07bdce76e593"
-  integrity sha512-wmZji0IJJxg6JUwwQjqMDcZtCws0DiZZVfWXMA2NhYQ012nVGMbnayTr2tO1rkrH6oGrzky/vh3tcS4jOfKsHQ==
+"@cem2ran/ppx_style@0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@cem2ran/ppx_style/-/ppx_style-0.0.4.tgz#c5149c089ab2797dac5589bfe08553ff949e4c5a"
+  integrity sha512-viw3N23Pnn1EedXWXpab9UTTmy5zePZry2jKjxr6lsmrP02bJuWrDAKJ2MjgO+EQMIMwKPvkUkIPkZZzbrxhZA==
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
