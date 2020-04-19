@@ -13,6 +13,7 @@
     "gen:graphql:re": "send-introspection-query http://localhost:3000/graphql || send-introspection-query https://unsplash-api.loganmcansh.com/graphql",
     "prestart": "rnstl",
     "patch": "patch-package",
+    "patch:reason": "patch-package --exclude '^(?!.*re)' --case-sensitive-path-filtering",
     "postinstall": "run-s patch build",
     "storybook": "start-storybook -p 7007",
     "devtools": "react-devtools"
